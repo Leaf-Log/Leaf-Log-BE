@@ -1,8 +1,8 @@
-package com.example.leaflog.common.exception;
+package com.example.leaflog.config.exception.filter;
 
-import com.example.leaflog.common.exception.model.CustomException;
-import com.example.leaflog.common.exception.model.ErrorCode;
-import com.example.leaflog.common.exception.model.ErrorResponse;
+import com.example.leaflog.sharedkernel.exception.model.CustomException;
+import com.example.leaflog.sharedkernel.exception.model.ErrorCode;
+import com.example.leaflog.sharedkernel.exception.model.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
