@@ -20,7 +20,7 @@ public class GithubOauthUserInfoParser implements OauthUserInfoParser {
 
         String email = emailFetcher.fetchPrimaryEmail(accessToken);
 
-        String avatarUrl = (String) attributes.get("avatarUrl");
+        String avatarUrl = (String) attributes.get("avatar_url");
 
         return new OauthUserInfo(name, email, avatarUrl);
     }
