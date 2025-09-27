@@ -1,4 +1,4 @@
-package com.example.leaflog.common.exception.model;
+package com.example.leaflog.sharedkernel.exception.model;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
