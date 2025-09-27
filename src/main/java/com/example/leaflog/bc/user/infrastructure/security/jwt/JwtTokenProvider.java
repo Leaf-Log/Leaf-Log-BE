@@ -53,7 +53,7 @@ public class JwtTokenProvider {
 
     public Authentication getAuthentication(String token){
         String email = jwtTokenStructure.getTokenSubject(token);
-        User user = userRepository.findByEmail(GithubEmail.of(email))
+        User user = userRepository.findByGithubEmail(GithubEmail.of(email))
                 .orElseThrow(() -> new UsernameNotFoundException("인증 실패"));
 
         UserDetails userDetails = new AuthDetails(user);

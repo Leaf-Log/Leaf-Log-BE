@@ -34,7 +34,7 @@ public class CustomOAuthUserService extends DefaultOAuth2UserService {
     }
 
     private User register(OauthUserInfo userInfo) {
-        return userRepository.findByEmail(GithubEmail.of(userInfo.email()))
+        return userRepository.findByGithubEmail(GithubEmail.of(userInfo.email()))
                 .orElseGet(() -> userRepository.save(
                         new User(
                                 UserId.of(),
