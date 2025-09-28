@@ -26,17 +26,8 @@ public class User {
     @Embedded
     private GithubEmail githubEmail;
 
-
-    public void changeUserName(String newUserName){
-        this.userName = UserName.of(newUserName);
-    }
-
     public String displayProfileName(){
         return githubProfile.githubName();
-    }
-
-    public String displayUserName(){
-        return userName.name();
     }
 
     public String getIdentityEmail(){
