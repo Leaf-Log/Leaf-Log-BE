@@ -1,10 +1,10 @@
 package com.example.leaflog.config.security;
 
-import com.example.leaflog.bc.user.infrastructure.security.jwt.JwtTokenFilter;
-import com.example.leaflog.bc.user.infrastructure.security.jwt.JwtTokenProvider;
-import com.example.leaflog.bc.user.infrastructure.security.oauth.CustomOAuthUserService;
-import com.example.leaflog.bc.user.infrastructure.security.oauth.handler.OauthFailureHandler;
-import com.example.leaflog.bc.user.infrastructure.security.oauth.handler.OauthSuccessHandler;
+import com.example.leaflog.bc.member.user.infrastructure.security.jwt.JwtTokenFilter;
+import com.example.leaflog.bc.member.user.infrastructure.security.jwt.JwtTokenProvider;
+import com.example.leaflog.bc.member.user.infrastructure.security.oauth.CustomOAuthUserService;
+import com.example.leaflog.bc.member.user.infrastructure.security.oauth.handler.OauthFailureHandler;
+import com.example.leaflog.bc.member.user.infrastructure.security.oauth.handler.OauthSuccessHandler;
 import com.example.leaflog.config.exception.filter.GlobalExceptionFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
