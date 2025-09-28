@@ -26,7 +26,7 @@ public class User {
     @Embedded
     private GithubEmail githubEmail;
 
-    public String displayProfileName(){
+    public String getPrincipalName(){
         return githubProfile.githubName();
     }
 
