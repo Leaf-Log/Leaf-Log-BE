@@ -39,7 +39,7 @@ public class User {
         return userName.name();
     }
 
-    public String displayUserEmail(){
+    public String getIdentityEmail(){
         return githubEmail.email();
     }
 }
