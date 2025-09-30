@@ -1,6 +1,9 @@
 package com.example.leaflog.bc.sharedkernel.user.vo;
 
+import jakarta.persistence.Embeddable;
+
 //우리 서비스 자체적인 이름
+@Embeddable
 public record UserName(
         String name
 ) {
