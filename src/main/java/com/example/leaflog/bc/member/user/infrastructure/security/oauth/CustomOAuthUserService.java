@@ -8,8 +8,8 @@ import com.example.leaflog.bc.member.user.domain.User;
 import com.example.leaflog.bc.member.user.domain.repository.UserRepository;
 import com.example.leaflog.bc.member.user.domain.vo.GithubEmail;
 import com.example.leaflog.bc.member.user.domain.vo.GithubProfile;
-import com.example.leaflog.bc.member.user.domain.vo.UserId;
-import com.example.leaflog.bc.member.user.domain.vo.UserName;
+import com.example.leaflog.bc.sharedkernel.event.structure.DomainEventPublisher;
+import com.example.leaflog.bc.sharedkernel.user.vo.UserName;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomOAuthUserService extends DefaultOAuth2UserService {
     private final UserRepository userRepository;
     private final GithubEmailFetcher githubEmailFetcher;
+    private final DomainEventPublisher domainEventPublisher;
 
     @Override
     @Transactional
@@ -36,11 +37,11 @@ public class CustomOAuthUserService extends DefaultOAuth2UserService {
     private User register(OauthUserInfo userInfo) {
         return userRepository.findByGithubEmail(GithubEmail.of(userInfo.email()))
                 .orElseGet(() -> userRepository.save(
-                        new User(
-                                UserId.of(),
+                        User.register(
                                 UserName.of(userInfo.name()),
                                 GithubProfile.of(userInfo.name(), userInfo.profileImg()),
-                                GithubEmail.of(userInfo.email())
+                                GithubEmail.of(userInfo.email()),
+                                domainEventPublisher
                         )
                 ));
     }
