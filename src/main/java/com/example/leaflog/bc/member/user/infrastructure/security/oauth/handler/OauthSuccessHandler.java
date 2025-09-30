@@ -32,8 +32,8 @@ public class OauthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         User user = authDetails.getUser();
 
         TokenResponseDto tokenResponse = TokenResponseDto.of(
-                jwtTokenProvider.generateAccessToken(user.getIdentityEmail()),
-                jwtTokenProvider.generateRefreshToken(user.getIdentityEmail())
+                jwtTokenProvider.generateAccessToken(user.getPrincipalEmail()),
+                jwtTokenProvider.generateRefreshToken(user.getPrincipalEmail())
         );
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
