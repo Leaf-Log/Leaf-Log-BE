@@ -1,9 +1,11 @@
 package com.example.leaflog.bc.member.user.domain;
 
+import com.example.leaflog.bc.sharedkernel.user.event.UserCreatedEvent;
 import com.example.leaflog.bc.member.user.domain.vo.GithubEmail;
 import com.example.leaflog.bc.member.user.domain.vo.GithubProfile;
-import com.example.leaflog.bc.member.user.domain.vo.UserId;
-import com.example.leaflog.bc.member.user.domain.vo.UserName;
+import com.example.leaflog.bc.sharedkernel.event.structure.DomainEventPublisher;
+import com.example.leaflog.bc.sharedkernel.user.vo.UserId;
+import com.example.leaflog.bc.sharedkernel.user.vo.UserName;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -26,11 +28,26 @@ public class User {
     @Embedded
     private GithubEmail githubEmail;
 
-    public String getPrincipalName(){
+    public String getPrincipalEmail() {
+        return githubEmail.email();
+    }
+
+    public UserId userId(){
+        return id;
+    }
+
+    public String displayGithubName(){
         return githubProfile.githubName();
     }
 
-    public String getIdentityEmail(){
-        return githubEmail.email();
+    public String displayGithubImg(){
+        return githubProfile.imgUrl();
+    }
+
+
+    public static User register(UserName name, GithubProfile profile, GithubEmail email, DomainEventPublisher publisher){
+        User user = new User(UserId.of(), name, profile, email);
+        publisher.publish(new UserCreatedEvent(user.id, user.userName));
+        return user;
     }
 }
