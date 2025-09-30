@@ -1,4 +1,4 @@
-package com.example.leaflog.bc.member.user.domain.vo;
+package com.example.leaflog.bc.sharedkernel.user.vo;
 
 import jakarta.persistence.Embeddable;
 

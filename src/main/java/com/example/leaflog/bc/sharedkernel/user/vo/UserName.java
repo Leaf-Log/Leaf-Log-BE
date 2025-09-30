@@ -1,4 +1,4 @@
-package com.example.leaflog.bc.member.user.domain.vo;
+package com.example.leaflog.bc.sharedkernel.user.vo;
 
 //우리 서비스 자체적인 이름
 public record UserName(

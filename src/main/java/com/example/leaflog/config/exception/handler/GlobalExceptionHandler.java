@@ -1,8 +1,8 @@
 package com.example.leaflog.config.exception.handler;
 
-import com.example.leaflog.sharedkernel.exception.model.CustomException;
-import com.example.leaflog.sharedkernel.exception.model.ErrorCode;
-import com.example.leaflog.sharedkernel.exception.model.ErrorResponse;
+import com.example.leaflog.bc.sharedkernel.exception.model.CustomException;
+import com.example.leaflog.bc.sharedkernel.exception.model.ErrorCode;
+import com.example.leaflog.bc.sharedkernel.exception.model.ErrorResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
