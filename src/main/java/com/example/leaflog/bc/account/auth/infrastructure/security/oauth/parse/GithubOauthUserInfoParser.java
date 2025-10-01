@@ -1,7 +1,7 @@
-package com.example.leaflog.bc.member.user.infrastructure.security.oauth.parse;
+package com.example.leaflog.bc.account.auth.infrastructure.security.oauth.parse;
 
 
-import com.example.leaflog.bc.member.user.infrastructure.security.oauth.dto.OauthUserInfo;
+import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.dto.OauthUserInfo;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Map;
@@ -22,7 +22,7 @@ public class GithubOauthUserInfoParser implements OauthUserInfoParser {
 
         String avatarUrl = (String) attributes.get("avatar_url");
 
-        return new OauthUserInfo(name, email, avatarUrl);
+        return new OauthUserInfo(name, email, avatarUrl, attributes);
     }
 }
 

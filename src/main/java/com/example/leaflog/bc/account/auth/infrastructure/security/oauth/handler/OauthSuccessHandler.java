@@ -1,9 +1,9 @@
-package com.example.leaflog.bc.member.user.infrastructure.security.oauth.handler;
+package com.example.leaflog.bc.account.auth.infrastructure.security.oauth.handler;
 
-import com.example.leaflog.bc.member.user.infrastructure.security.auth.AuthDetails;
-import com.example.leaflog.bc.member.user.infrastructure.security.jwt.JwtTokenProvider;
-import com.example.leaflog.bc.member.user.infrastructure.security.oauth.dto.TokenResponseDto;
-import com.example.leaflog.bc.member.user.domain.User;
+import com.example.leaflog.bc.account.auth.infrastructure.security.auth.AuthDetails;
+import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtTokenProvider;
+import com.example.leaflog.bc.account.auth.application.dto.TokenResponseDto;
+import com.example.leaflog.bc.account.user.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,8 +1,8 @@
-package com.example.leaflog.bc.member.user.domain;
+package com.example.leaflog.bc.account.user.domain;
 
 import com.example.leaflog.bc.sharedkernel.user.event.UserCreatedEvent;
-import com.example.leaflog.bc.member.user.domain.vo.GithubEmail;
-import com.example.leaflog.bc.member.user.domain.vo.GithubProfile;
+import com.example.leaflog.bc.account.user.domain.vo.GithubEmail;
+import com.example.leaflog.bc.account.user.domain.vo.GithubProfile;
 import com.example.leaflog.bc.sharedkernel.event.structure.DomainEventPublisher;
 import com.example.leaflog.bc.sharedkernel.user.vo.UserId;
 import com.example.leaflog.bc.sharedkernel.user.vo.UserName;

@@ -1,7 +1,7 @@
-package com.example.leaflog.bc.member.user.infrastructure.security.auth;
+package com.example.leaflog.bc.account.auth.infrastructure.security.auth;
 
-import com.example.leaflog.bc.member.user.domain.repository.UserRepository;
-import com.example.leaflog.bc.member.user.domain.vo.GithubEmail;
+import com.example.leaflog.bc.account.user.domain.repository.UserRepository;
+import com.example.leaflog.bc.account.user.domain.vo.GithubEmail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

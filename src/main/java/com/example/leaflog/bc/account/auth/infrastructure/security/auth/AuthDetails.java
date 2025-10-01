@@ -1,6 +1,6 @@
-package com.example.leaflog.bc.member.user.infrastructure.security.auth;
+package com.example.leaflog.bc.account.auth.infrastructure.security.auth;
 
-import com.example.leaflog.bc.member.user.domain.User;
+import com.example.leaflog.bc.account.user.domain.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

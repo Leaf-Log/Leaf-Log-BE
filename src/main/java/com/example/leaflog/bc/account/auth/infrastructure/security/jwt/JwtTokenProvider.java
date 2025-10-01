@@ -1,11 +1,11 @@
-package com.example.leaflog.bc.member.user.infrastructure.security.jwt;
+package com.example.leaflog.bc.account.auth.infrastructure.security.jwt;
 
-import com.example.leaflog.bc.member.user.infrastructure.refreshtoken.RefreshToken;
-import com.example.leaflog.bc.member.user.infrastructure.refreshtoken.repository.RefreshTokenRepository;
-import com.example.leaflog.bc.member.user.infrastructure.security.auth.AuthDetails;
-import com.example.leaflog.bc.member.user.domain.User;
-import com.example.leaflog.bc.member.user.domain.repository.UserRepository;
-import com.example.leaflog.bc.member.user.domain.vo.GithubEmail;
+import com.example.leaflog.bc.account.auth.domain.RefreshToken;
+import com.example.leaflog.bc.account.auth.domain.repository.RefreshTokenRepository;
+import com.example.leaflog.bc.account.auth.infrastructure.security.auth.AuthDetails;
+import com.example.leaflog.bc.account.user.domain.User;
+import com.example.leaflog.bc.account.user.domain.repository.UserRepository;
+import com.example.leaflog.bc.account.user.domain.vo.GithubEmail;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

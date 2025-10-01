@@ -1,4 +1,4 @@
-package com.example.leaflog.bc.member.user.infrastructure.security.oauth.dto;
+package com.example.leaflog.bc.account.auth.application.dto;
 
 public record TokenResponseDto(
         String accessToken,

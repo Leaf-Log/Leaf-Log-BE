@@ -1,6 +1,6 @@
-package com.example.leaflog.bc.member.user.infrastructure.refreshtoken.repository;
+package com.example.leaflog.bc.account.auth.domain.repository;
 
-import com.example.leaflog.bc.member.user.infrastructure.refreshtoken.RefreshToken;
+import com.example.leaflog.bc.account.auth.domain.RefreshToken;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

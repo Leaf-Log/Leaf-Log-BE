@@ -1,4 +1,4 @@
-package com.example.leaflog.bc.member.user.infrastructure.security.jwt;
+package com.example.leaflog.bc.account.auth.infrastructure.security.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
