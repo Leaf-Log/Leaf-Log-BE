@@ -1,6 +1,6 @@
 package com.example.leaflog.bc.profile.profile.application.query;
 
-import com.example.leaflog.bc.member.user.domain.User;
+import com.example.leaflog.bc.account.user.domain.User;
 import com.example.leaflog.bc.profile.profile.domain.Profile;
 
 public record ProfileReadModel(

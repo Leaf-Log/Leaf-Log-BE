@@ -1,10 +1,9 @@
 package com.example.leaflog.config.security;
 
-import com.example.leaflog.bc.member.user.infrastructure.security.jwt.JwtTokenFilter;
-import com.example.leaflog.bc.member.user.infrastructure.security.jwt.JwtTokenProvider;
-import com.example.leaflog.bc.member.user.infrastructure.security.oauth.CustomOAuthUserService;
-import com.example.leaflog.bc.member.user.infrastructure.security.oauth.handler.OauthFailureHandler;
-import com.example.leaflog.bc.member.user.infrastructure.security.oauth.handler.OauthSuccessHandler;
+import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtTokenFilter;
+import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtTokenProvider;
+import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.handler.OauthFailureHandler;
+import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.handler.OauthSuccessHandler;
 import com.example.leaflog.config.exception.filter.GlobalExceptionFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(
-            HttpSecurity http, CustomOAuthUserService customUserService,
+            HttpSecurity http,
             OauthSuccessHandler successHandler, OauthFailureHandler failureHandler
     ) throws Exception{
         return http
@@ -41,14 +40,12 @@ public class SecurityConfig {
                 .sessionManagement(configurer -> configurer
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2Login(oauth -> oauth
-                        .userInfoEndpoint(userInfo -> userInfo.userService(customUserService))
                         .successHandler(successHandler)
                         .failureHandler(failureHandler)
                         .redirectionEndpoint(endpoint -> endpoint
                                 .baseUri("/login/oauth2/code/github")))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/oauth2/**", "/login/**", "/auth/reissue").permitAll()
-                        //.requestMatchers(HttpMethod.POST, "/auth/reissue").permitAll()
+                        .requestMatchers("/", "/oauth2/**", "/login/**", "/reissue").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new GlobalExceptionFilter(objectMapper), JwtTokenFilter.class)
