@@ -1,7 +1,7 @@
-package com.example.leaflog.bc.member.user.domain.repository;
+package com.example.leaflog.bc.account.user.domain.repository;
 
-import com.example.leaflog.bc.member.user.domain.User;
-import com.example.leaflog.bc.member.user.domain.vo.GithubEmail;
+import com.example.leaflog.bc.account.user.domain.User;
+import com.example.leaflog.bc.account.user.domain.vo.GithubEmail;
 import com.example.leaflog.bc.sharedkernel.user.vo.UserId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
