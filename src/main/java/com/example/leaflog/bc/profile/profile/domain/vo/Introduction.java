@@ -1,6 +1,6 @@
 package com.example.leaflog.bc.profile.profile.domain.vo;
 
-import com.example.leaflog.bc.profile.profile.presentation.exception.InvalidDescriptionLengthException;
+import com.example.leaflog.bc.profile.profile.domain.exception.InvalidDescriptionLengthException;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
