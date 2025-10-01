@@ -1,4 +1,7 @@
-package com.example.leaflog.bc.member.user.domain.vo;
+package com.example.leaflog.bc.account.user.domain.vo;
+
+import com.example.leaflog.bc.account.user.domain.exception.EmptyGithubNameException;
+import com.example.leaflog.bc.account.user.domain.exception.EmptyGithubProfileImageException;
 
 public record GithubProfile(
         String githubName,
@@ -6,11 +9,11 @@ public record GithubProfile(
 ) {
     public GithubProfile {
         if(githubName == null || githubName.isEmpty()){
-            throw new IllegalArgumentException("깃허브 이름이 비어있습니다.");
+            throw new EmptyGithubNameException();
         }
 
         if(imgUrl == null || imgUrl.isEmpty()){
-            throw new IllegalArgumentException("깃허브 사진이 비어있습니다.");
+            throw new EmptyGithubProfileImageException();
         }
     }
 

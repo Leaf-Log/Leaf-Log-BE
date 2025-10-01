@@ -1,5 +1,7 @@
-package com.example.leaflog.bc.member.user.infrastructure.security.oauth.parse;
+package com.example.leaflog.bc.account.auth.infrastructure.security.oauth.parse;
 
+import com.example.leaflog.bc.account.auth.infrastructure.exception.GithubApiUnavailableException;
+import com.example.leaflog.bc.account.auth.infrastructure.exception.GithubPrimaryEmailNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
@@ -23,13 +25,13 @@ public class GithubEmailFetcher {
                 .block();
 
         if (emails == null) {
-            throw new IllegalArgumentException("GitHub API 에서 이메일 목록을 가져오지 못했습니다.");
+            throw new GithubApiUnavailableException();
         }
 
         return emails.stream()
                 .filter(email -> Boolean.TRUE.equals(email.get("primary")))
                 .map(email -> (String) email.get("email"))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("GitHub 이메일을 가져올 수 없습니다."));
+                .orElseThrow(GithubPrimaryEmailNotFoundException::new);
     }
 }

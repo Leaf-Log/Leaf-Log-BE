@@ -1,5 +1,7 @@
-package com.example.leaflog.bc.member.user.infrastructure.security.jwt;
+package com.example.leaflog.bc.account.auth.infrastructure.security.jwt;
 
+import com.example.leaflog.bc.account.auth.infrastructure.exception.ExpiredJwtException;
+import com.example.leaflog.bc.account.auth.infrastructure.exception.InvalidJwtException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -45,9 +47,9 @@ public class JwtTokenStructure {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (io.jsonwebtoken.ExpiredJwtException e){
-            throw new IllegalArgumentException("토큰 만료"); //ExpiredJwtException();
+            throw new ExpiredJwtException();
         } catch (Exception e) {
-            throw new IllegalArgumentException("유효하지 않는  토큰"); //InvalidJwtException();
+            throw new InvalidJwtException();
         }
     }
 

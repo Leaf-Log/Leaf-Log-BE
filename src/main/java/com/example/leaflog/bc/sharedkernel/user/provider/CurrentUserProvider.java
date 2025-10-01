@@ -1,8 +1,9 @@
 package com.example.leaflog.bc.sharedkernel.user.provider;
 
-import com.example.leaflog.bc.member.user.domain.User;
-import com.example.leaflog.bc.member.user.domain.repository.UserRepository;
-import com.example.leaflog.bc.member.user.domain.vo.GithubEmail;
+import com.example.leaflog.bc.account.user.domain.User;
+import com.example.leaflog.bc.account.user.domain.repository.UserRepository;
+import com.example.leaflog.bc.account.user.domain.vo.GithubEmail;
+import com.example.leaflog.bc.account.auth.application.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,6 @@ public class CurrentUserProvider {
     public User getCurrentUser(){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByGithubEmail(GithubEmail.of(email))
-                .orElseThrow(() -> new IllegalArgumentException("유저가 존재하지 않습니다."));
+                .orElseThrow(UserNotFoundException::new);
     }
 }

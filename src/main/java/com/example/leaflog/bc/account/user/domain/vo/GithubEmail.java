@@ -1,5 +1,6 @@
-package com.example.leaflog.bc.member.user.domain.vo;
+package com.example.leaflog.bc.account.user.domain.vo;
 
+import com.example.leaflog.bc.account.user.domain.exception.EmptyEmailException;
 import jakarta.persistence.Embeddable;
 
 //github 에서 받아오기 때문에 null 검증만
@@ -9,7 +10,7 @@ public record GithubEmail(
 ) {
     public GithubEmail {
         if(email == null || email.isEmpty()){
-            throw new IllegalArgumentException("이메일이 비어있습니다.");
+            throw new EmptyEmailException();
         }
     }
 
