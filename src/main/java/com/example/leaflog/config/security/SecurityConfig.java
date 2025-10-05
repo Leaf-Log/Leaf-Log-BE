@@ -2,6 +2,7 @@ package com.example.leaflog.config.security;
 
 import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtTokenFilter;
 import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtTokenProvider;
+import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.CustomOAuthUserService;
 import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.handler.OauthFailureHandler;
 import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.handler.OauthSuccessHandler;
 import com.example.leaflog.config.exception.filter.GlobalExceptionFilter;
@@ -28,7 +29,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(
-            HttpSecurity http,
+            HttpSecurity http, CustomOAuthUserService customOAuthUserService,
             OauthSuccessHandler successHandler, OauthFailureHandler failureHandler
     ) throws Exception{
         return http
@@ -40,6 +41,7 @@ public class SecurityConfig {
                 .sessionManagement(configurer -> configurer
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2Login(oauth -> oauth
+                        .userInfoEndpoint(userInfo -> userInfo.userService(customOAuthUserService))
                         .successHandler(successHandler)
                         .failureHandler(failureHandler)
                         .redirectionEndpoint(endpoint -> endpoint

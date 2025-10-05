@@ -23,7 +23,7 @@ public class OauthLoginService {
     private final DomainEventPublisher domainEventPublisher;
 
     @Transactional
-    public void login(OAuth2UserRequest userRequest){
+    public AuthDetails login(OAuth2UserRequest userRequest){
         OauthUserInfo userInfo = customOAuthUserFetcher.fetchUserInfo(userRequest);
 
         User user = userRepository.findByGithubEmail(GithubEmail.of(userInfo.email()))
@@ -36,6 +36,6 @@ public class OauthLoginService {
                         )
                 ));
 
-        new AuthDetails(user, userInfo.attributes());
+        return new AuthDetails(user, userInfo.attributes());
     }
 }
