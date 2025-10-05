@@ -1,7 +1,7 @@
 package com.example.leaflog.bc.account.auth.application;
 
 import com.example.leaflog.bc.account.auth.application.dto.TokenReissueRequest;
-import com.example.leaflog.bc.account.auth.application.dto.TokenResponseDto;
+import com.example.leaflog.bc.account.auth.application.dto.TokenResponse;
 import com.example.leaflog.bc.account.auth.domain.RefreshToken;
 import com.example.leaflog.bc.account.auth.domain.repository.RefreshTokenRepository;
 import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtProperties;
@@ -20,7 +20,7 @@ public class ReissueService {
     private final RefreshTokenRepository refreshTokenRepository;
 
     @Transactional
-    public TokenResponseDto reissue(TokenReissueRequest request){
+    public TokenResponse reissue(TokenReissueRequest request){
         RefreshToken refreshToken = refreshTokenRepository.findByRefreshToken(request.refreshToken())
                 .orElseThrow(RefreshTokenNotFoundException::new);
 
@@ -28,7 +28,7 @@ public class ReissueService {
                 jwtTokenProvider.generateRefreshToken(refreshToken.email()),
                 jwtProperties.refreshExp());
 
-        return TokenResponseDto.of(
+        return TokenResponse.of(
                 jwtTokenProvider.generateAccessToken(refreshToken.email()),
                 refreshToken.getRefreshToken()
         );

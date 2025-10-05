@@ -2,7 +2,7 @@ package com.example.leaflog.bc.account.auth.infrastructure.security.oauth.handle
 
 import com.example.leaflog.bc.account.auth.infrastructure.security.auth.AuthDetails;
 import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtTokenProvider;
-import com.example.leaflog.bc.account.auth.application.dto.TokenResponseDto;
+import com.example.leaflog.bc.account.auth.application.dto.TokenResponse;
 import com.example.leaflog.bc.account.user.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class OauthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         AuthDetails authDetails = (AuthDetails) authentication.getPrincipal();
         User user = authDetails.getUser();
 
-        TokenResponseDto tokenResponse = TokenResponseDto.of(
+        TokenResponse tokenResponse = TokenResponse.of(
                 jwtTokenProvider.generateAccessToken(user.getPrincipalEmail()),
                 jwtTokenProvider.generateRefreshToken(user.getPrincipalEmail())
         );
