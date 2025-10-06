@@ -3,7 +3,7 @@ package com.example.leaflog.bc.sharedkernel.user.provider;
 import com.example.leaflog.bc.account.user.domain.User;
 import com.example.leaflog.bc.account.user.domain.repository.UserRepository;
 import com.example.leaflog.bc.account.user.domain.vo.GithubEmail;
-import com.example.leaflog.bc.account.auth.application.exception.UserNotFoundException;
+import com.example.leaflog.bc.account.auth.application.service.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

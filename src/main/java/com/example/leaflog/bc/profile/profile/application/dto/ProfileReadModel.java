@@ -1,4 +1,4 @@
-package com.example.leaflog.bc.profile.profile.application.query;
+package com.example.leaflog.bc.profile.profile.application.dto;
 
 import com.example.leaflog.bc.account.user.domain.User;
 import com.example.leaflog.bc.profile.profile.domain.Profile;
