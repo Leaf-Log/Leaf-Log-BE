@@ -46,6 +46,7 @@ public class JwtTokenProvider {
         return refreshToken;
     }
 
+
     public String resolveToken(HttpServletRequest request){
         String bearerToken = request.getHeader(jwtProperties.header());
         return jwtTokenStructure.parseToken(bearerToken);

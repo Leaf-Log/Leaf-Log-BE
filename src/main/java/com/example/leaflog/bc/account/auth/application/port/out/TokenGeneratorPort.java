@@ -1,0 +1,8 @@
+package com.example.leaflog.bc.account.auth.application.port.out;
+
+public interface TokenGeneratorPort {
+    String generateAccessToken(String email);
+    String generateRefreshToken(String email);
+    //Long getAccessExp();
+    Long getRefreshExp();
+}
