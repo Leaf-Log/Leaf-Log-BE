@@ -2,9 +2,9 @@ package com.example.leaflog.config.security;
 
 import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtTokenFilter;
 import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtTokenProvider;
-import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.CustomOAuthUserService;
-import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.handler.OauthFailureHandler;
-import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.handler.OauthSuccessHandler;
+import com.example.leaflog.bc.account.auth.presentation.adapter.in.oauth.OAuthLoginAdapter;
+import com.example.leaflog.bc.account.auth.presentation.adapter.in.oauth.handler.OauthFailureHandler;
+import com.example.leaflog.bc.account.auth.presentation.adapter.in.oauth.handler.OauthSuccessHandler;
 import com.example.leaflog.config.exception.filter.GlobalExceptionFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(
-            HttpSecurity http, CustomOAuthUserService customOAuthUserService,
+            HttpSecurity http, OAuthLoginAdapter customOAuthUserService,
             OauthSuccessHandler successHandler, OauthFailureHandler failureHandler
     ) throws Exception{
         return http

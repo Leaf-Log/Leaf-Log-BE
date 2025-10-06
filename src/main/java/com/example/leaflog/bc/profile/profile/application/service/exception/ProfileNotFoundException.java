@@ -1,4 +1,4 @@
-package com.example.leaflog.bc.profile.profile.application.exception;
+package com.example.leaflog.bc.profile.profile.application.service.exception;
 
 import com.example.leaflog.bc.sharedkernel.exception.model.CustomException;
 import com.example.leaflog.bc.sharedkernel.exception.model.ErrorCode;

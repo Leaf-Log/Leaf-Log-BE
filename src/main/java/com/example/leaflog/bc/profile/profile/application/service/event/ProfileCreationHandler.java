@@ -1,4 +1,4 @@
-package com.example.leaflog.bc.profile.profile.application;
+package com.example.leaflog.bc.profile.profile.application.service.event;
 
 import com.example.leaflog.bc.profile.profile.domain.Profile;
 import com.example.leaflog.bc.profile.profile.domain.repository.ProfileRepository;
