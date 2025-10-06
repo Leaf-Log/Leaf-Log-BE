@@ -1,4 +1,4 @@
-package com.example.leaflog.bc.account.auth.infrastructure.security.oauth.handler;
+package com.example.leaflog.bc.account.auth.presentation.adapter.in.oauth.handler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,7 +1,8 @@
-package com.example.leaflog.bc.account.auth.application;
+package com.example.leaflog.bc.account.auth.application.service;
 
+import com.example.leaflog.bc.account.auth.application.port.in.OauthLoginUseCase;
+import com.example.leaflog.bc.account.auth.application.port.out.OauthUserFetcherPort;
 import com.example.leaflog.bc.account.auth.infrastructure.security.auth.AuthDetails;
-import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.CustomOAuthUserFetcher;
 import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.dto.OauthUserInfo;
 import com.example.leaflog.bc.account.user.domain.User;
 import com.example.leaflog.bc.account.user.domain.repository.UserRepository;
@@ -10,21 +11,22 @@ import com.example.leaflog.bc.account.user.domain.vo.GithubProfile;
 import com.example.leaflog.bc.sharedkernel.event.structure.DomainEventPublisher;
 import com.example.leaflog.bc.sharedkernel.user.vo.UserName;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class OauthLoginService {
+public class OauthLoginService implements OauthLoginUseCase {
 
-    private final CustomOAuthUserFetcher customOAuthUserFetcher;
     private final UserRepository userRepository;
     private final DomainEventPublisher domainEventPublisher;
+    private final OauthUserFetcherPort oauthUserFetcherPort;
 
+    @Override
     @Transactional
-    public AuthDetails login(OAuth2UserRequest userRequest){
-        OauthUserInfo userInfo = customOAuthUserFetcher.fetchUserInfo(userRequest);
+    public AuthDetails login(String accessToken, String provider){
+
+        OauthUserInfo userInfo = oauthUserFetcherPort.fetchUserInfo(accessToken, provider);
 
         User user = userRepository.findByGithubEmail(GithubEmail.of(userInfo.email()))
                 .orElseGet(() -> userRepository.save(
