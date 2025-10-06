@@ -1,5 +1,6 @@
-package com.example.leaflog.bc.account.auth.infrastructure.security.oauth.parse;
+package com.example.leaflog.bc.account.auth.infrastructure.adapter.out.oauth;
 
+import com.example.leaflog.bc.account.auth.application.port.out.GithubEmailPort;
 import com.example.leaflog.bc.account.auth.infrastructure.exception.GithubApiUnavailableException;
 import com.example.leaflog.bc.account.auth.infrastructure.exception.GithubPrimaryEmailNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -12,10 +13,11 @@ import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-public class GithubEmailFetcher {
+public class GithubEmailFetcher implements GithubEmailPort {
 
     private final WebClient webClient;
 
+    @Override
     public String fetchPrimaryEmail(String accessToken){
         List<Map<String, Object>> emails = webClient.get()
                 .uri("/user/emails")
