@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/profile")
 public class ProfileController {
 
-    private final ProfileQueryUseCase ProfileQueryUseCase;
+    private final ProfileQueryUseCase profileQueryUseCase;
 
     @GetMapping()
     public ProfileReadModel getProfile(){
-        return ProfileQueryUseCase.query();
+        return profileQueryUseCase.query();
     }
 }
