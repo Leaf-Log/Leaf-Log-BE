@@ -1,7 +1,6 @@
 package com.example.leaflog.bc.account.auth.presentation.adapter.in.web;
 
 import com.example.leaflog.bc.account.auth.application.port.in.ReissueUseCase;
-import com.example.leaflog.bc.account.auth.application.service.ReissueService;
 import com.example.leaflog.bc.account.auth.application.dto.TokenReissueRequest;
 import com.example.leaflog.bc.account.auth.application.dto.TokenResponse;
 import jakarta.validation.Valid;
