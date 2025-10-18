@@ -3,6 +3,7 @@ package com.example.leaflog.bc.account.auth.application.service;
 import com.example.leaflog.bc.account.auth.application.dto.Auth;
 import com.example.leaflog.bc.account.auth.application.port.in.OauthLoginUseCase;
 import com.example.leaflog.bc.account.auth.application.port.out.OauthUserFetcherPort;
+import com.example.leaflog.bc.account.auth.application.port.out.TokenProviderPort;
 import com.example.leaflog.bc.account.auth.infrastructure.security.oauth.dto.OauthUserInfo;
 import com.example.leaflog.bc.account.user.domain.User;
 import com.example.leaflog.bc.account.user.domain.repository.UserRepository;
