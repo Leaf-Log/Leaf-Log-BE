@@ -1,6 +1,6 @@
-package com.example.leaflog.bc.account.auth.infrastructure.adapter.out.jwt;
+package com.example.leaflog.bc.account.auth.infrastructure.adapter.out.token;
 
-import com.example.leaflog.bc.account.auth.application.port.out.TokenGeneratorPort;
+import com.example.leaflog.bc.account.auth.application.port.out.TokenProviderPort;
 import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtProperties;
 import com.example.leaflog.bc.account.auth.infrastructure.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class JwtTokenGenerator implements TokenGeneratorPort {
+public class TokenProvider implements TokenProviderPort {
 
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtProperties jwtProperties;
@@ -26,5 +26,10 @@ public class JwtTokenGenerator implements TokenGeneratorPort {
     @Override
     public Long getRefreshExp() {
         return jwtProperties.refreshExp();
+    }
+
+    @Override
+    public void saveGithubAccessToken(String email, String token) {
+        jwtTokenProvider.saveGithubAccessToken(email, token);
     }
 }

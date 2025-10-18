@@ -45,3 +45,5 @@ presentation: 실제 사용자에게 표현하는 부분 설계
 ### Context Map
 <프로젝트 완성 시 공개>
 
+
+추후 도입: Outbox Pattern, CORS Pattern, ACL, OHS

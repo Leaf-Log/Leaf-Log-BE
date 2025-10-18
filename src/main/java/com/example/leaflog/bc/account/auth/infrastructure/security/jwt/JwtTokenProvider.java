@@ -1,7 +1,7 @@
 package com.example.leaflog.bc.account.auth.infrastructure.security.jwt;
 
-import com.example.leaflog.bc.account.auth.domain.RefreshToken;
-import com.example.leaflog.bc.account.auth.domain.repository.RefreshTokenRepository;
+import com.example.leaflog.bc.account.auth.infrastructure.token.Token;
+import com.example.leaflog.bc.account.auth.infrastructure.token.repository.TokenRepository;
 import com.example.leaflog.bc.account.auth.infrastructure.security.auth.AuthDetails;
 import com.example.leaflog.bc.account.user.domain.User;
 import com.example.leaflog.bc.account.user.domain.repository.UserRepository;
@@ -20,7 +20,8 @@ public class JwtTokenProvider {
     private final JwtProperties jwtProperties;
     private final JwtTokenStructure jwtTokenStructure;
     private final UserRepository userRepository;
-    private final RefreshTokenRepository refreshTokenRepository;
+    private final TokenRepository tokenRepository;
+
 
     private static final String ACCESS_TOKEN = "access_token";
     private static final String REFRESH_TOKEN = "refresh_token";
@@ -38,7 +39,7 @@ public class JwtTokenProvider {
                 REFRESH_TOKEN,
                 jwtProperties.refreshExp());
 
-        refreshTokenRepository.save(RefreshToken.builder()
+        tokenRepository.save(Token.builder()
                 .email(email)
                 .refreshToken(refreshToken)
                 .ttl(jwtProperties.refreshExp())
@@ -46,6 +47,19 @@ public class JwtTokenProvider {
         return refreshToken;
     }
 
+    public void saveGithubAccessToken(String email, String githubToken){
+        System.out.println(githubToken);
+        Token token = tokenRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("리프레시 토큰을 찾을 수 없음"));
+        token.updateGithubAccessToken(githubToken);
+        tokenRepository.save(token);
+    }
+
+    public String getGithubAccessToken(String email){
+        return tokenRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("리프레시 토큰을 찾을 수 없음"))
+                .getGithubAccessToken();
+    }
 
     public String resolveToken(HttpServletRequest request){
         String bearerToken = request.getHeader(jwtProperties.header());
@@ -54,10 +68,12 @@ public class JwtTokenProvider {
 
     public Authentication getAuthentication(String token){
         String email = jwtTokenStructure.getTokenSubject(token);
+        String githubAccessToken = getGithubAccessToken(email);
+
         User user = userRepository.findByGithubEmail(GithubEmail.of(email))
                 .orElseThrow(() -> new UsernameNotFoundException("인증 실패"));
 
-        UserDetails userDetails = new AuthDetails(user);
+        UserDetails userDetails = new AuthDetails(user, githubAccessToken);
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }

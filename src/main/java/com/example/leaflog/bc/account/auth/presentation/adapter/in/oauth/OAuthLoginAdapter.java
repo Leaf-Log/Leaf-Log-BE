@@ -21,7 +21,6 @@ public class OAuthLoginAdapter extends DefaultOAuth2UserService {
         Auth auth = oauthLoginUseCase.login(
                 userRequest.getAccessToken().getTokenValue(),
                 userRequest.getClientRegistration().getRegistrationId());
-
-        return new AuthDetails(auth.user(), auth.attributes());
+        return new AuthDetails(auth.user(), auth.attributes(), userRequest.getAccessToken().getTokenValue());
     }
 }

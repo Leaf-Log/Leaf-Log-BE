@@ -37,7 +37,7 @@ spring:
           github:
             client-id: ${GITHUB_CLIENT_ID}
             client-secret: ${GITHUB_CLIENT_SECRET}
-            scope: read:user,user:email
+            scope: read:user,user:email,repo
             redirect-uri: ${GITHUB_REDIRECT_URI}
             client-name: GitHub
         provider:
@@ -46,3 +46,8 @@ spring:
             token-uri: https://github.com/login/oauth/access_token
             user-info-uri: https://api.github.com/user
             user-name-attribute: id
+
+logging:
+  level:
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
+    reactor.netty.http.client: DEBUG
