@@ -1,4 +1,4 @@
-package com.example.leaflog.bc.account.auth.domain;
+package com.example.leaflog.bc.account.auth.infrastructure.token;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -12,7 +12,7 @@ import org.springframework.data.redis.core.index.Indexed;
 @RedisHash
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class RefreshToken {
+public class Token {
 
     @Id
     private String email;
@@ -24,6 +24,9 @@ public class RefreshToken {
     @TimeToLive
     private Long ttl;
 
+    @Getter
+    private String githubAccessToken;
+
     public void reissue(String newToken, Long newTtl){
         this.refreshToken = newToken;
         this.ttl = newTtl;
@@ -31,5 +34,9 @@ public class RefreshToken {
 
     public String email(){
         return email;
+    }
+
+    public void updateGithubAccessToken(String newToken){
+        this.githubAccessToken = newToken;
     }
 }
