@@ -20,6 +20,7 @@ import com.example.leaflog.bc.til.room.domain.service.NoteRoomExistencePolicy;
 import com.example.leaflog.config.rabbitmq.NoteRabbitConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +33,7 @@ public class UpdateNoteService implements UpdateNoteUseCase {
     private final JsonMapper jsonMapper;
 
     @Override
+    @Transactional
     public void update(NoteUpdateRequest request, String noteId) {
         User user = currentUserProvider.getCurrentUser();
         NoteRoom noteRoom = noteRoomExistencePolicy.ensureExistsFor(user);

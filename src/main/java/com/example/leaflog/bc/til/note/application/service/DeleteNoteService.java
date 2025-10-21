@@ -18,6 +18,7 @@ import com.example.leaflog.bc.til.room.domain.service.NoteRoomExistencePolicy;
 import com.example.leaflog.config.rabbitmq.NoteRabbitConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +31,7 @@ public class DeleteNoteService implements DeleteNoteUseCase {
     private final JsonMapper jsonMapper;
 
     @Override
+    @Transactional
     public void delete(String noteId) {
         User user = currentUserProvider.getCurrentUser();
         NoteRoom noteRoom = noteRoomExistencePolicy.ensureExistsFor(user);

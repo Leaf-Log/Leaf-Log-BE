@@ -15,6 +15,7 @@ import com.example.leaflog.bc.til.room.domain.NoteRoom;
 import com.example.leaflog.bc.til.room.domain.service.NoteRoomExistencePolicy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -30,6 +31,7 @@ public class NoteQueryService implements NoteQueryUseCase {
     private final NoteRoomExistencePolicy noteRoomExistencePolicy;
 
     @Override
+    @Transactional(readOnly = true)
     public NoteResponse query(String noteId) {
 
         User user = currentUserProvider.getCurrentUser();
@@ -52,6 +54,7 @@ public class NoteQueryService implements NoteQueryUseCase {
     }
 
     @Override
+    @Transactional
     public List<NoteResponse> queryAll() {
 
         User user = currentUserProvider.getCurrentUser();
@@ -76,8 +79,6 @@ public class NoteQueryService implements NoteQueryUseCase {
         Set<String> notesTitles = notes.stream() //note 의 이름(제목)을 Set 으로 저장
                 .map(note -> note.getTitle().title())
                 .collect(Collectors.toSet());
-
-        System.out.println((notesTitles));
 
         List<Note> newNotes = githubNotesTitles.stream() //해당 note 에는 없지만, github 에 있는 note 를 DB에 저장
                 .filter(title -> !notesTitles.contains(title))
