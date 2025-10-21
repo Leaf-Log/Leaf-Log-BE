@@ -32,6 +32,7 @@ public class Note {
     private UserId writerId;
 
     @Embedded
+    @AttributeOverride(name = "title", column = @Column(unique = true))
     private Title title;
 
     private String content;
