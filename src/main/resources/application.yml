@@ -30,6 +30,12 @@ spring:
       port: ${REDIS_PORT}
       host: ${REDIS_HOST}
 
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+
+
   security:
     oauth2:
       client:
