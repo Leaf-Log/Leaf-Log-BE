@@ -17,13 +17,17 @@ public class DeleteGithubNoteConsumer {
 
     @RabbitListener(queues = NoteRabbitConfig.NOTE_DELETE_ROUTING_KEY)
     public void deletedEvent(String message){
-        NoteDeletedEvent event = jsonMapper.fromJson(message, NoteDeletedEvent.class);
+        try {
+            NoteDeletedEvent event = jsonMapper.fromJson(message, NoteDeletedEvent.class);
 
-        githubNotePort.deleteNote(
-                event.title(),
-                event.githubName(),
-                event.noteRoomName(),
-                event.githubAccessToken()
-        );
+            githubNotePort.deleteNote(
+                    event.title(),
+                    event.githubName(),
+                    event.noteRoomName(),
+                    event.githubAccessToken()
+            );
+        } catch (Exception e){
+            throw new RuntimeException("삭제 중 문제 발생"); //TODO: CustomException 추가
+        }
     }
 }

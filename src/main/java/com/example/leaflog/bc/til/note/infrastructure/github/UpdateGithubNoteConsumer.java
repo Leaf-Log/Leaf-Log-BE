@@ -17,13 +17,17 @@ public class UpdateGithubNoteConsumer {
 
     @RabbitListener(queues = NoteRabbitConfig.NOTE_UPDATE_ROUTING_KEY)
     public void updatedEvent(String message){
-        NoteUpdatedEvent event = jsonMapper.fromJson(message, NoteUpdatedEvent.class);
+        try{
+            NoteUpdatedEvent event = jsonMapper.fromJson(message, NoteUpdatedEvent.class);
 
-        githubNotePort.updateNote(
-                event.title(),
-                event.content(),
-                event.githubName(),
-                event.noteRoomName(),
-                event.githubAccessToken());
+            githubNotePort.updateNote(
+                    event.title(),
+                    event.content(),
+                    event.githubName(),
+                    event.noteRoomName(),
+                    event.githubAccessToken());
+        } catch (Exception e){
+            throw new RuntimeException("업데이트 중 문제 발생"); ////TODO: CustomException 추가
+        }
     }
 }
