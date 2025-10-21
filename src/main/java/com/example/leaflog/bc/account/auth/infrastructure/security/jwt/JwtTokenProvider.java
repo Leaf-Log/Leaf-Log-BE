@@ -1,5 +1,6 @@
 package com.example.leaflog.bc.account.auth.infrastructure.security.jwt;
 
+import com.example.leaflog.bc.account.auth.application.service.exception.RefreshTokenNotFoundException;
 import com.example.leaflog.bc.account.auth.infrastructure.token.Token;
 import com.example.leaflog.bc.account.auth.infrastructure.token.repository.TokenRepository;
 import com.example.leaflog.bc.account.auth.infrastructure.security.auth.AuthDetails;
@@ -48,7 +49,6 @@ public class JwtTokenProvider {
     }
 
     public void saveGithubAccessToken(String email, String githubToken){
-        System.out.println(githubToken);
         Token token = tokenRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("리프레시 토큰을 찾을 수 없음"));
         token.updateGithubAccessToken(githubToken);
@@ -57,7 +57,7 @@ public class JwtTokenProvider {
 
     public String getGithubAccessToken(String email){
         return tokenRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("리프레시 토큰을 찾을 수 없음"))
+                .orElseThrow(RefreshTokenNotFoundException::new)
                 .getGithubAccessToken();
     }
 

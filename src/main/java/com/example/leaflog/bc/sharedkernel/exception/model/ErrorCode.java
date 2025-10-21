@@ -13,6 +13,7 @@ public enum ErrorCode {
     EXPIRED_JWT(HttpStatus.UNAUTHORIZED, "로그인 세션이 만료되었습니다."),
     INVALID_JWT(HttpStatus.UNAUTHORIZED, "유효하지 않은 토큰입니다."),
     REFRESH_TOKEN_NOT_FOUND(HttpStatus.NOT_FOUND, "리프레시 토큰이 존재하지 않습니다."),
+    REFRESH_TOKEN_EXPIRED(HttpStatus.UNAUTHORIZED, "리프레시 토큰이 만료되었습니다"),
 
     GITHUB_EMAIL_EMPTY(HttpStatus.BAD_REQUEST, "깃허브 이메일이 비어있습니다."),
     GITHUB_NAME_EMPTY(HttpStatus.BAD_REQUEST, "깃허브 이름이 비어있습니다."),
@@ -32,7 +33,7 @@ public enum ErrorCode {
     INVALID_DESCRIPTION_LENGTH(HttpStatus.BAD_REQUEST, "설명은 100글자 이내로 작성해야 합니다."),
     PROFILE_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 유저의 프로필이 존재하지 않습니다."),
 
-
+    NOTE_ROOM_NAME_NOT_FOUND(HttpStatus.NOT_FOUND, "이름을 다시 입력해주세요"),
     NOTE_ROOM_ALREADY_EXISTS(HttpStatus.CONFLICT, "이미 레포지토리가 생성되어 있습니다."),
     NOTE_ROOM_NOT_FOUND(HttpStatus.NOT_FOUND, "레포지토리가 존재하지 않습니다."),
 

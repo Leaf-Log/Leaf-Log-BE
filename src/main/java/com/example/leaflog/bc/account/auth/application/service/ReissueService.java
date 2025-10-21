@@ -24,6 +24,7 @@ public class ReissueService implements ReissueUseCase {
         Token refreshToken = tokenRepository.findByRefreshToken(request.refreshToken())
                 .orElseThrow(RefreshTokenNotFoundException::new);
 
+
         refreshToken.reissue(
                 tokenProviderPort.generateRefreshToken(refreshToken.email()),
                 tokenProviderPort.getRefreshExp());

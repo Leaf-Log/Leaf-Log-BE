@@ -77,9 +77,12 @@ public class NoteQueryService implements NoteQueryUseCase {
                 .map(note -> note.getTitle().title())
                 .collect(Collectors.toSet());
 
+        System.out.println((notesTitles));
+
         List<Note> newNotes = githubNotesTitles.stream() //해당 note 에는 없지만, github 에 있는 note 를 DB에 저장
                 .filter(title -> !notesTitles.contains(title))
                 .map(title -> {
+                    System.out.println("제목: "+title);
                     String content = githubNotePort.queryNote(
                             title,
                             githubName,

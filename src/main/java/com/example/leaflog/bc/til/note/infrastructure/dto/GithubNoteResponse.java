@@ -10,7 +10,6 @@ public record GithubNoteResponse(
         String content
 ) {
     public String decodedContent(){
-        byte[] decodedBytes = Base64.getDecoder().decode(content);
-        return new String(decodedBytes, StandardCharsets.UTF_8);
+        return new String(Base64.getMimeDecoder().decode(content), StandardCharsets.UTF_8);
     }
 }
