@@ -3,11 +3,14 @@ package com.example.leaflog.bc.til.note.infrastructure.github;
 import com.example.leaflog.bc.sharedkernel.mapper.JsonMapper;
 import com.example.leaflog.bc.til.note.application.port.out.GithubNotePort;
 import com.example.leaflog.bc.til.note.domain.event.NoteUpdatedEvent;
+import com.example.leaflog.bc.til.note.infrastructure.exception.GithubNoteUpdateFailedException;
 import com.example.leaflog.config.rabbitmq.NoteRabbitConfig;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class UpdateGithubNoteConsumer {
@@ -27,7 +30,8 @@ public class UpdateGithubNoteConsumer {
                     event.noteRoomName(),
                     event.githubAccessToken());
         } catch (Exception e){
-            throw new RuntimeException("업데이트 중 문제 발생"); ////TODO: CustomException 추가
+            log.error("노트를 수정하는 중에 문제가 발생하였습니다.");
+            throw new GithubNoteUpdateFailedException();
         }
     }
 }

@@ -3,11 +3,14 @@ package com.example.leaflog.bc.til.note.infrastructure.github;
 import com.example.leaflog.bc.sharedkernel.mapper.JsonMapper;
 import com.example.leaflog.bc.til.note.application.port.out.GithubNotePort;
 import com.example.leaflog.bc.til.note.domain.event.NoteDeletedEvent;
+import com.example.leaflog.bc.til.note.infrastructure.exception.GithubNoteDeleteFailedException;
 import com.example.leaflog.config.rabbitmq.NoteRabbitConfig;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class DeleteGithubNoteConsumer {
@@ -27,7 +30,8 @@ public class DeleteGithubNoteConsumer {
                     event.githubAccessToken()
             );
         } catch (Exception e){
-            throw new RuntimeException("삭제 중 문제 발생"); //TODO: CustomException 추가
+            log.error("노트를 삭제하는 중에 문제가 발생하였습니다.");
+            throw new GithubNoteDeleteFailedException();
         }
     }
 }
