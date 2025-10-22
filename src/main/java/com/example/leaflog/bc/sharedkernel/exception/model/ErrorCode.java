@@ -19,6 +19,8 @@ public enum ErrorCode {
     GITHUB_NAME_EMPTY(HttpStatus.BAD_REQUEST, "깃허브 이름이 비어있습니다."),
     GITHUB_PROFILE_IMAGE_EMPTY(HttpStatus.BAD_REQUEST, "깃허브 사진이 비어있습니다."),
     GITHUB_NOTE_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 노트가 없습니다."),
+    GITHUB_NOTE_UPDATE_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "GitHub 노트 업데이트 중 알 수 없는 문제가 발생했습니다."),
+    GITHUB_NOTE_DELETE_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "GitHub 노트 삭제 중 알 수 없는 문제가 발생했습니다."),
 
 
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "유저가 존재하지 않습니다."),
@@ -33,7 +35,7 @@ public enum ErrorCode {
     INVALID_DESCRIPTION_LENGTH(HttpStatus.BAD_REQUEST, "설명은 100글자 이내로 작성해야 합니다."),
     PROFILE_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 유저의 프로필이 존재하지 않습니다."),
 
-    NOTE_ROOM_NAME_NOT_FOUND(HttpStatus.NOT_FOUND, "이름을 다시 입력해주세요"),
+    INVALID_NOTE_ROOM_NAME(HttpStatus.BAD_REQUEST, "노트 방 이름은 비어있을 수 없으며, 최대 50자를 초과할 수 없습니다."),
     NOTE_ROOM_ALREADY_EXISTS(HttpStatus.CONFLICT, "이미 레포지토리가 생성되어 있습니다."),
     NOTE_ROOM_NOT_FOUND(HttpStatus.NOT_FOUND, "레포지토리가 존재하지 않습니다."),
 
