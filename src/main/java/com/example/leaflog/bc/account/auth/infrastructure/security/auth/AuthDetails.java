@@ -17,15 +17,24 @@ public class AuthDetails implements OAuth2User, UserDetails {
 
     private final User user;
     private final Map<String, Object> attributes;
+    private final String githubAccessToken;
 
     public AuthDetails(User user) {
         this.user = user;
+        this.githubAccessToken = "";
         this.attributes = new HashMap<>();
     }
 
-    public AuthDetails(User user, Map<String, Object> attributes) {
+    public AuthDetails(User user, String githubAccessToken) {
+        this.user = user;
+        this.githubAccessToken = githubAccessToken;
+        this.attributes = new HashMap<>();
+    }
+
+    public AuthDetails(User user, Map<String, Object> attributes, String githubAccessToken) {
         this.user = user;
         this.attributes = attributes != null ? new HashMap<>(attributes) : new HashMap<>();
+        this.githubAccessToken = githubAccessToken;
     }
 
     @Override

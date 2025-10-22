@@ -32,6 +32,7 @@ public class OauthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         User user = authDetails.getUser();
 
         TokenResponse tokenResponse = tokenGenerateUseCase.generateToken(user.getPrincipalEmail());
+        tokenGenerateUseCase.saveGithubAccessToken(user.getPrincipalEmail(), authDetails.getGithubAccessToken());
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
