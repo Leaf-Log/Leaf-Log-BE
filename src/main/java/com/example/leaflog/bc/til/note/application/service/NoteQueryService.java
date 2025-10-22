@@ -31,7 +31,7 @@ public class NoteQueryService implements NoteQueryUseCase {
     private final NoteRoomExistencePolicy noteRoomExistencePolicy;
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public NoteResponse query(String noteId) {
 
         User user = currentUserProvider.getCurrentUser();
