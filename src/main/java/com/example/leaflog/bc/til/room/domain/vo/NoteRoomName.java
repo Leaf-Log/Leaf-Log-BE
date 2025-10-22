@@ -1,6 +1,6 @@
 package com.example.leaflog.bc.til.room.domain.vo;
 
-import com.example.leaflog.bc.til.room.domain.exception.NoteRoomNameNotFoundException;
+import com.example.leaflog.bc.til.room.domain.exception.InvalidNoteRoomNameException;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
@@ -11,7 +11,7 @@ public record NoteRoomName(
     private static final int MAX_LENGTH = 100;
     public NoteRoomName{
         if(name == null || name.isBlank() || name.length() > MAX_LENGTH){
-            throw new NoteRoomNameNotFoundException();
+            throw new InvalidNoteRoomNameException();
         }
     }
 
