@@ -18,7 +18,9 @@ public class DeleteGithubNoteConsumer {
     private final GithubNotePort githubNotePort;
     private final JsonMapper jsonMapper;
 
-    @RabbitListener(queues = NoteRabbitConfig.NOTE_DELETE_ROUTING_KEY)
+    @RabbitListener(
+            queues = NoteRabbitConfig.NOTE_DELETE_ROUTING_KEY,
+            containerFactory = "retryableRabbitListenerContainerFactory")
     public void deletedEvent(String message){
         try {
             NoteDeletedEvent event = jsonMapper.fromJson(message, NoteDeletedEvent.class);

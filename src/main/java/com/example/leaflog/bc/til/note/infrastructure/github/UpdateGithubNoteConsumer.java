@@ -18,7 +18,9 @@ public class UpdateGithubNoteConsumer {
     private final GithubNotePort githubNotePort;
     private final JsonMapper jsonMapper;
 
-    @RabbitListener(queues = NoteRabbitConfig.NOTE_UPDATE_ROUTING_KEY)
+    @RabbitListener(
+            queues = NoteRabbitConfig.NOTE_UPDATE_ROUTING_KEY,
+            containerFactory = "retryableRabbitListenerContainerFactory")
     public void updatedEvent(String message){
         try{
             NoteUpdatedEvent event = jsonMapper.fromJson(message, NoteUpdatedEvent.class);
